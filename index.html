@@ -29,30 +29,25 @@
   justify-content: space-between;
 </style>
 <script>
-const accessToken = "2d1ddeaadc20462dba88c9beebbe0a21";
-const baseUrl = "https://api.api.ai/api/query?v=20150910";
-const sessionId = "1";
-const loader = `<span class='loader'><span class='loader__dot'></span><span class='loader__dot'></span><span class='loader__dot'></span></span>`;
-const errorMessage = "My apologies, I'm not available at the moment. =^.^=";
-const urlPattern = /(\b(https?|ftp):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/gim;
-const loadingDelay = 700;
-const aiReplyDelay = 1800;
+  then(response => response.json()).
+  then(res => {
+    if (res.status < 200 || res.status >= 300) {
+      let error = new Error(res.statusText);
+      throw error;
+    }
+    return res;
+  }).
+  then(res => {
+    setResponse(res.result, loadingDelay + aiReplyDelay);
+  }).
+  catch(error => {
+    setResponse(errorMessage, loadingDelay + aiReplyDelay);
+    resetInputField();
+    console.log(error);
+  });
 
-const $document = document;
-const $chatbot = $document.querySelector(".chatbot");
-const $chatbotMessageWindow = $document.querySelector(
-".chatbot__message-window");
-
-const $chatbotHeader = $document.querySelector(".chatbot__header");
-const $chatbotMessages = $document.querySelector(".chatbot__messages");
-const $chatbotInput = $document.querySelector(".chatbot__input");
-const $chatbotSubmit = $document.querySelector(".chatbot__submit");
-
-document.addEventListener(
-"keypress",
-event => {
-  if (event.which == 13) {
-    validateMessage();
+  aiMessage(loader, true, loadingDelay);
+};
 </script>
 <body>
 <div id="chat-circle" class=" btn-raised">
