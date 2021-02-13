@@ -1,0 +1,85 @@
+<html>
+<style>
+@import url("https://fonts.googleapis.com/css?family=Open+Sans:300,600");
+@import url("https://fonts.googleapis.com/css?family=Open+Sans:300,600");
+.chatbot {
+  display: none;
+  position: fixed;
+  top: 0;
+  bottom: 50px;
+  width: 100%;
+  box-shadow: 0 -6px 99px -17px rgba(0, 0, 0, 0.68);
+}
+@media screen and (min-width: 640px) {
+  .chatbot {
+    max-width: 420px;
+    right: 50px;
+    top: auto;
+  }
+}
+.chatbot.chatbot--closed {
+  top: auto;
+  width: 100%;
+}
+
+.chatbot__header {
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+</style>
+<script>
+const accessToken = "2d1ddeaadc20462dba88c9beebbe0a21";
+const baseUrl = "https://api.api.ai/api/query?v=20150910";
+const sessionId = "1";
+const loader = `<span class='loader'><span class='loader__dot'></span><span class='loader__dot'></span><span class='loader__dot'></span></span>`;
+const errorMessage = "My apologies, I'm not available at the moment. =^.^=";
+const urlPattern = /(\b(https?|ftp):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/gim;
+const loadingDelay = 700;
+const aiReplyDelay = 1800;
+
+const $document = document;
+const $chatbot = $document.querySelector(".chatbot");
+const $chatbotMessageWindow = $document.querySelector(
+".chatbot__message-window");
+
+const $chatbotHeader = $document.querySelector(".chatbot__header");
+const $chatbotMessages = $document.querySelector(".chatbot__messages");
+const $chatbotInput = $document.querySelector(".chatbot__input");
+const $chatbotSubmit = $document.querySelector(".chatbot__submit");
+
+document.addEventListener(
+"keypress",
+event => {
+  if (event.which == 13) {
+    validateMessage();
+</script>
+<body>
+<div id="chat-circle" class=" btn-raised">
+  <svg class="icon-speech" viewBox="0 0 48 48">
+    <use xlink:href="#icon-speech" />
+  </svg>
+</div>
+
+<div class="chatbot chatbot--closed ">
+  <div class="chatbot__header">
+    <p><strong>Got a question?</strong> <span class="u-text-highlight">Ask Harry</span></p>
+    <svg class="chatbot__close-button icon-speech" viewBox="0 0 32 32">
+      <use xlink:href="#icon-speech" />
+    </svg>
+    <svg class="chatbot__close-button icon-close" viewBox="0 0 32 32">
+      <use xlink:href="#icon-close" />
+    </svg>
+  </div>
+  <div class="chatbot__message-window">
+    <ul class="chatbot__messages">
+      <li class="is-ai animation">
+        <div class="is-ai__profile-picture">
+          <svg class="icon-avatar" viewBox="0 0 32 32">
+            <use xlink:href="#avatar" />
+          </svg>
+        </div>
+        <span class="chatbot__arrow chatbot__arrow--left"></span>
+        <p class='chatbot__message'><strong class='intro'>Hello, I’m Harry, your virtual assistant. I'm here to help with your general enquiries.</strong>Example of questions you can ask for demo purpose: <br><em>Hi / How are you? / I'd like some financial advice / Can you email me a statement? / Can I get a form? / How do I cancel my life insurance? </em></p>
+</body>
+</html>
