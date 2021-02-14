@@ -1,7 +1,33 @@
 <html>
 <header>
-</header>
 <style>
+@mixin center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+@mixin ball {
+  @include center;
+  content: '';
+  display: block;
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, .5);
+  z-index: 2;
+  margin-top: 4px;
+  animation: ball .45s cubic-bezier(0, 0, 0.15, 1) alternate infinite;
+}
+
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
 html,
 body {
   height: 100%;
@@ -289,6 +315,7 @@ body {
   }
 }
 </style>
+</header>
 <script>
 var $messages = $('.messages-content'),
     d, h, m,
